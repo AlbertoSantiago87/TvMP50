@@ -1,0 +1,627 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Desing chimeras},
+  pdfauthor={Alberto Santiago},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Desing chimeras}
+\author{Alberto Santiago}
+\date{2023-11-02}
+
+\begin{document}
+\maketitle
+
+\hypertarget{data-driven-design-of-compounds-against-trichomonas-vaginalis}{%
+\subsection{Data-driven design of compounds against Trichomonas
+vaginalis}\label{data-driven-design-of-compounds-against-trichomonas-vaginalis}}
+
+Abstract: Trichomoniasis is a sexually transmitted disease caused by the
+protozoan parasite Trichomonas vaginalis, which affects 3.9\% of the
+world's population. Metronidazole is the most common compound used to
+treat this infection, which causes breaks in the parasite's DNA strand,
+inhibiting its synthesis and viability. Nevertheless, in recent years,
+the parasite has shown resistance to metronidazole, so searching for new
+compounds against such a pathogen becomes necessary. Therefore, in the
+present work, we performed a computer-assisted drug design approach
+searching for molecules that could act against trichomoniasis. Firstly,
+we developed a screening analysis based on molecular descriptors (1-4D).
+Then resulting molecules were processed by molecular docking analysis to
+identify those with better interaction with the active site of the
+protein TvMP50 (a virulence factor of the parasite involved in its
+cytotoxicity toward the host cell). Finally, fragments of the most
+active molecules were generated and assembled into new chimeric
+molecular entities, which then were reevaluated against the mentioned
+protein. As results, we obtained a database of compounds that could be
+considered in the design of novel compounds against T. vaginalis from
+which we obtain a new molecule derived from
+Emodin-Lucidin-Isopropyl-Ether (ELIE) that presented an optimal activity
+(ΔG=-17.0 kcal/mol) and could be consider for further studies.
+
+\hypertarget{molecular-descriptors.}{%
+\subsubsection{Molecular descriptors.}\label{molecular-descriptors.}}
+
+Molecular descriptors are numerical values that are used to describe
+different characteristics of molecules, such as physicochemical,
+topological, and three-dimensional structural properties, and are
+usually analyzed in 3 dimensions. Although there are thousands of
+molecular descriptors, the most frequently used include molecular weight
+(MW), octanol/water partition coefficient (SlogP), topological polar
+surface area (TPSA), hydrogen bond donors (HBD), hydrogen bond acceptors
+(HBA), number of rotating bonds (RB), electronic or charge distribution,
+preferred conformations, heats of formation, solubility, LogP, pKa,
+refractivity, melting point, molecule length, molecular area, molecular
+volume, and reactive groups.
+
+In this study, we analyzed Lipinski's rules, which suggest that there is
+better absorption or permeation when there are 5 hydrogen bond donors or
+less, 10 hydrogen bond acceptors or less, a molecular weight (MW) of 500
+Daltons or less, and a Log P of 5 or less. According to Lipinski's rule,
+in general, an active substance for oral administration should not
+violate more than one rule.
+
+In this study, we calculated the molecular descriptors of a set of
+molecules identified by mesh filtering in the PubMed database. There
+were 34 filtered compounds. The molecular descriptors were calculated
+using three different software/platforms: DataWarrior, Drulito, and
+SwissADME.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Des\_Mol\_Total }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"/cloud/project/DT\_Dru\_Swiss\_des\_mol\_total.csv"}\NormalTok{, }\AttributeTok{header=}\NormalTok{T)}
+
+
+\NormalTok{DF\_Des\_Mol\_2 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(Des\_Mol\_Total)}
+
+
+\FunctionTok{head}\NormalTok{(DF\_Des\_Mol\_2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             Name
+## 1    2H-chromene
+## 2 Betulinic acid
+## 3      Nectandra
+## 4   Caffeic acid
+## 5      Candimine
+## 6 Carmaphycin-17
+##                                                                                                Smiles
+## 1                                                                                   C1Oc(cccc2)c2C=C1
+## 2                             CC(C)(C(CC1)C(C)(CC2)C(CC3)C1(C)C(C)(CC1)C3C(C(CC3)C(C)=C)C13C(O)=O)C2O
+## 3                                                                        CC(CCC=C(C)C)(C1CC=C(C)CC1)O
+## 4                                                                             OC(C=Cc(cc1)cc(O)c1O)=O
+## 5                                                       CN(CC1)C(C(C2OC(c3c4OC)=O)c3cc3c4OCO3)C1=CC2O
+## 6 CCCCCC(N[C@H](Cc1c[nH]c2c1cccc2)C(NC(Cc1c[nH]c2c1cccc2)C(N[C@H](Cc1ccccc1)C([C@]1(C)OC1)=O)=O)=O)=O
+##   Total.Molweight  cLogP  cLogS H.Acceptors H.Donors Total.Surface.Area
+## 1         132.160 20.636 -2.388           1        0             110.02
+## 2         456.708 63.706 -6.278           3        2             337.41
+## 3         222.370 44.711 -3.162           1        1             196.52
+## 4         180.159  0.783 -1.407           4        3             136.56
+## 5         345.350 15.068 -3.051           7        1             234.17
+## 6         675.827 44.372 -6.830          10        5             533.16
+##   Relative.PSA Polar.Surface.Area Druglikeness Mutagenic Tumorigenic
+## 1     0.090893               9.23      -19.351      none        none
+## 2     0.116300              57.53      -21.490      none        none
+## 3     0.066660              20.23      -14.665      none        none
+## 4     0.383270              77.76        0.168      none        none
+## 5     0.297600              77.46       50.872       low        none
+## 6     0.247900             148.48      -72.848      high        high
+##   Reproductive.Effective Irritant Molecular.Flexibility     MW  logP  AlogP HBA
+## 1                   none     none               0.13010 123.99 1.475  1.086   1
+## 2                   none     none               0.36111 407.98 9.407  2.350   3
+## 3                   none     high               0.65996 195.99 4.085  2.750   1
+## 4                   none     none               0.39892 171.98 0.888  0.203   4
+## 5                   none     none               0.19800 325.97 0.236 -1.036   7
+## 6                   none     high               0.46390 629.99 3.575 -1.827  10
+##   HBD  TPSA    AMR nRB nAtom nAcidicGroup RC nRigidB nAromRing nHB Salerts
+## 1   0  9.23  45.71   0    10            0  2      11         1   1       0
+## 2   0 17.07 131.75   2    33            0  5      35         0   3       0
+## 3   0  0.00  71.19   4    16            0  1      12         0   1       0
+## 4   0 17.07  50.41   2    13            0  1      11         1   4       1
+## 5   0 57.23  90.00   1    25            0  5      28         1   7       2
+## 6   0 80.81 196.93  20    50            0  6      35         5  10       2
+##      Formula   MW.1 X.Heavy.atoms X.Aromatic.heavy.atoms Fraction.Csp3
+## 1      C9H8O 132.16            10                      6          0.11
+## 2   C30H48O3 456.70            33                      0          0.90
+## 3    C15H26O 222.37            16                      0          0.73
+## 4     C9H8O4 180.16            13                      6          0.00
+## 5  C18H19NO6 345.35            25                      6          0.50
+## 6 C40H45N5O5 675.82            50                     24          0.35
+##   X.Rotatable.bonds X.H.bond.acceptors X.H.bond.donors     MR TPSA.1 iLOGP
+## 1                 0                  1               0  40.91   9.23  2.04
+## 2                 2                  3               2 136.91  57.53  3.79
+## 3                 4                  1               1  72.36  20.23  3.46
+## 4                 2                  4               3  47.16  77.76  0.97
+## 5                 1                  7               1  90.05  77.46  2.59
+## 6                20                  5               5 194.03 148.48  4.41
+##   XLOGP3 WLOGP MLOGP Silicos.IT.Log.P Consensus.Log.P ESOL.Log.S
+## 1   2.25  1.98  1.97             2.44            2.14      -2.52
+## 2   8.21  7.09  5.82             5.75            6.13      -7.71
+## 3   3.79  4.23  3.56             3.74            3.76      -3.34
+## 4   1.15  1.09  0.70             0.75            0.93      -1.89
+## 5   0.69  0.67  1.21             1.16            1.26      -2.53
+## 6   6.00  5.07  1.79             8.36            5.13      -6.85
+##   ESOL.Solubility..mg.ml. ESOL.Solubility..mol.l.     ESOL.Class Ali.Log.S
+## 1                3.98e-01                3.01e-03        Soluble     -2.08
+## 2                8.87e-06                1.94e-08 Poorly soluble     -9.28
+## 3                1.01e-01                4.55e-04        Soluble     -3.91
+## 4                2.32e+00                1.29e-02   Very soluble     -2.38
+## 5                1.03e+00                2.97e-03        Soluble     -1.89
+## 6                9.65e-05                1.43e-07 Poorly soluble     -8.90
+##   Ali.Solubility..mg.ml. Ali.Solubility..mol.l.      Ali.Class Silicos.IT.LogSw
+## 1               1.10e+00               8.32e-03        Soluble            -2.46
+## 2               2.40e-07               5.26e-10 Poorly soluble            -5.70
+## 3               2.74e-02               1.23e-04        Soluble            -3.00
+## 4               7.55e-01               4.19e-03        Soluble            -0.71
+## 5               4.41e+00               1.28e-02   Very soluble            -2.34
+## 6               8.60e-07               1.27e-09 Poorly soluble           -12.78
+##   Silicos.IT.Solubility..mg.ml. Silicos.IT.Solubility..mol.l.
+## 1                      4.54e-01                      3.44e-03
+## 2                      9.09e-04                      1.99e-06
+## 3                      2.24e-01                      1.01e-03
+## 4                      3.51e+01                      1.95e-01
+## 5                      1.58e+00                      4.58e-03
+## 6                      1.13e-10                      1.67e-13
+##     Silicos.IT.class GI.absorption BBB.permeant Pgp.substrate CYP1A2.inhibitor
+## 1            Soluble          High          Yes            No              Yes
+## 2 Moderately soluble           Low           No            No               No
+## 3            Soluble          High          Yes            No               No
+## 4            Soluble          High           No            No               No
+## 5            Soluble          High           No            No               No
+## 6          Insoluble           Low           No           Yes              Yes
+##   CYP2C19.inhibitor CYP2C9.inhibitor CYP2D6.inhibitor CYP3A4.inhibitor
+## 1                No               No               No               No
+## 2                No              Yes               No               No
+## 3                No              Yes               No               No
+## 4                No               No               No               No
+## 5                No               No              Yes               No
+## 6               Yes              Yes               No              Yes
+##   log.Kp..cm.s. Lipinski..violations Ghose..violations Veber..violations
+## 1         -5.51                    0                 2                 0
+## 2         -3.26                    1                 3                 0
+## 3         -4.97                    0                 0                 0
+## 4         -6.58                    0                 0                 0
+## 5         -7.92                    0                 0                 0
+## 6         -6.16                    1                 3                 2
+##   Egan..violations Muegge..violations Bioavailability.Score PAINS..alerts
+## 1                0                  2                  0.55             0
+## 2                1                  1                  0.85             0
+## 3                0                  1                  0.55             0
+## 4                0                  1                  0.56             1
+## 5                0                  0                  0.55             0
+## 6                1                  3                  0.55             0
+##   Brenk..alerts Leadlikeness..violations Synthetic.Accessibility
+## 1             0                        1                    2.55
+## 2             1                        2                    5.63
+## 3             1                        2                    3.95
+## 4             2                        1                    1.81
+## 5             1                        0                    4.56
+## 6             1                        3                    5.58
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(DF\_Des\_Mol\_2, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Name, }\AttributeTok{x =}\NormalTok{ MW, }\AttributeTok{fill =}\NormalTok{  MW))}\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Proyect_TvMP50_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(DF\_Des\_Mol\_2, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Name, }\AttributeTok{x =}\NormalTok{ H.Acceptors, }\AttributeTok{fill =}\NormalTok{  H.Acceptors))}\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Proyect_TvMP50_files/figure-latex/unnamed-chunk-1-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(DF\_Des\_Mol\_2, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Name, }\AttributeTok{x =}\NormalTok{ H.Donors, }\AttributeTok{fill =}\NormalTok{  H.Donors))}\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Proyect_TvMP50_files/figure-latex/unnamed-chunk-1-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(DF\_Des\_Mol\_2, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Name, }\AttributeTok{x =}\NormalTok{ logP, }\AttributeTok{fill =}\NormalTok{ logP))}\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Proyect_TvMP50_files/figure-latex/unnamed-chunk-1-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(DF\_Des\_Mol\_2, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Name, }\AttributeTok{x =}\NormalTok{ TPSA, }\AttributeTok{fill =}\NormalTok{  TPSA))}\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Proyect_TvMP50_files/figure-latex/unnamed-chunk-1-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(DF\_Des\_Mol\_2, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Name, }\AttributeTok{x =}\NormalTok{ Druglikeness, }\AttributeTok{fill =}\NormalTok{ Druglikeness))}\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Proyect_TvMP50_files/figure-latex/unnamed-chunk-1-6.pdf}
+
+\hypertarget{filtering-by-means-of-drulito}{%
+\subsubsection{Filtering by means of
+DruLiTo}\label{filtering-by-means-of-drulito}}
+
+Graph of the compounds that comply and do not comply with Lipinski's
+rules. A graph showing those compounds that comply with Lipinski's rules
+(green star) and those that do not comply with the 5 or Lipinski's rules
+(red star) is shown. This analysis was performed with Drulito software.
+
+\url{https://niper.gov.in/pi_dev_tools/DruLiToWeb/DruLiTo_index.html}
+
+\hypertarget{molecular-docking-screening}{%
+\subsubsection{Molecular docking
+screening}\label{molecular-docking-screening}}
+
+Once the compounds that passed the Lipinski rules were obtained, their
+binding interactions toward TvMP50 were evaluated by Molecular Docking.
+In this step, we used the SwissDock server
+(\url{http://www.swissdock.ch}), a web server that predicts the binding
+modes between different targets and ligands following the methodology
+cited by Grosdidier. All compounds from the initial library that
+interacted with the active site of TvMP50 were accommodated in a
+library, which we call the secondary chemical library.
+
+\hypertarget{fragment-generation}{%
+\subsubsection{Fragment Generation}\label{fragment-generation}}
+
+Six leading compounds were obtained by Ghose filtering and rules of
+threes, from which 4 different scaffolds were obtained.
+
+\begin{itemize}
+\tightlist
+\item
+  Leading compounds
+\end{itemize}
+
+Figure 1. Schematic of the chemical structures of the compounds that
+satisfy the leader rule. a) Lycorine, b) Lucidin-isopropyl-ether, c)
+Emodin, d) Fumagiline, e) Quercetin and f) Wogonin.
+
+\begin{itemize}
+\tightlist
+\item
+  Scaffolds
+\end{itemize}
+
+Figure 2. Schematic of the chemical structures of the scaffolds. a)
+Ly-corine scaffolds, b) Lucidin-isopropyl-ether scaffolds, c) Emodin
+scaffolds, d) Fumagiline scaffolds, e) Quercetin scaffolds and f)
+Wogonin scaffolds.
+
+Figure 3. The representation of the chimeric proposal of construction
+performed by DataWarrior software. Proposed construction between Emodin
+and Lucidin-isopropyl ether.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Quimeras }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"/cloud/project/Quimeras\_des\_mol\_total.csv"}\NormalTok{, }\AttributeTok{header=}\NormalTok{T)}
+
+\FunctionTok{head}\NormalTok{(Quimeras)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                      Name Total.Molweight Molweight
+## 1                Quimera1_Emodin_Wogonine         350.369   350.369
+## 2                Quimera2_Emodin_Lycorine         345.350   345.350
+## 3                    Quimera3_Emodin_ATZ2         475.274   475.274
+## 4               Quimera4_Emodin_Quercetin         296.277   296.277
+## 5 Quimera5_Emodin_Lucidin_isopropyl_ether         342.346   342.346
+## 6   Quimera6_Lucidin_isopropyl_ether_ATZ1         531.382   531.382
+##   Monoisotopic.Mass   cLogP  cLogS H.Acceptors H.Donors Total.Surface.Area
+## 1          350.1154  3.5726 -3.430           5        3             253.90
+## 2          345.1212  1.1025 -3.007           7        3             222.69
+## 3          473.9521  4.0054 -6.546           8        4             288.63
+## 4          296.0685  2.0014 -3.255           5        3             211.04
+## 5          342.1103 -0.2196 -4.876           6        3             249.47
+## 6          530.0147  4.9473 -7.532           8        3             343.06
+##   Relative.PSA Polar.Surface.Area Druglikeness Mutagenic Tumorigenic
+## 1      0.23356              79.15      0.75404      none        none
+## 2      0.34079              99.46      4.85430      none        none
+## 3      0.41995             165.06     -0.98282      none        none
+## 4      0.30980              94.83      0.98909      none        none
+## 5      0.31162             109.72     -1.50060      none        none
+## 6      0.34428             154.06     -1.36840       low        none
+##   Reproductive.Effective Irritant     MW   logP  AlogP HBA HBD  TPSA    AMR nRB
+## 1                   high     none 331.97  2.936  0.960   5   0 18.46 108.76   2
+## 2                   none     none 325.97 -0.296 -1.437   7   0 38.77  90.04   0
+## 3                   none     high 462.87  0.556  0.756   8   0 88.87 114.60   3
+## 4                   high     none 283.97  1.218  0.615   5   0 34.14  87.07   1
+## 5                   none     high 323.97  0.852 -1.388   6   0 89.49  92.57   3
+## 6                   none     high 510.87  1.394  1.033   8   0 98.10 133.30   6
+##   nAtom nAcidicGroup RC nRigidB nAromRing nHB Salerts
+## 1    26            0  4      27         2   5       1
+## 2    25            0  5      29         1   7       0
+## 3    29            0  4      29         3   8       0
+## 4    22            0  3      23         2   5       0
+## 5    25            0  3      24         2   6       0
+## 6    33            0  4      30         3   8       0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DF\_Quimeras\_des }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(Quimeras)}
+
+\NormalTok{DF\_Q }\OtherTok{\textless{}{-}}\NormalTok{ DF\_Quimeras\_des }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate\_if}\NormalTok{(is.numeric, scale)}
+
+\FunctionTok{head}\NormalTok{(DF\_Quimeras\_des)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                      Name Total.Molweight Molweight
+## 1                Quimera1_Emodin_Wogonine         350.369   350.369
+## 2                Quimera2_Emodin_Lycorine         345.350   345.350
+## 3                    Quimera3_Emodin_ATZ2         475.274   475.274
+## 4               Quimera4_Emodin_Quercetin         296.277   296.277
+## 5 Quimera5_Emodin_Lucidin_isopropyl_ether         342.346   342.346
+## 6   Quimera6_Lucidin_isopropyl_ether_ATZ1         531.382   531.382
+##   Monoisotopic.Mass   cLogP  cLogS H.Acceptors H.Donors Total.Surface.Area
+## 1          350.1154  3.5726 -3.430           5        3             253.90
+## 2          345.1212  1.1025 -3.007           7        3             222.69
+## 3          473.9521  4.0054 -6.546           8        4             288.63
+## 4          296.0685  2.0014 -3.255           5        3             211.04
+## 5          342.1103 -0.2196 -4.876           6        3             249.47
+## 6          530.0147  4.9473 -7.532           8        3             343.06
+##   Relative.PSA Polar.Surface.Area Druglikeness Mutagenic Tumorigenic
+## 1      0.23356              79.15      0.75404      none        none
+## 2      0.34079              99.46      4.85430      none        none
+## 3      0.41995             165.06     -0.98282      none        none
+## 4      0.30980              94.83      0.98909      none        none
+## 5      0.31162             109.72     -1.50060      none        none
+## 6      0.34428             154.06     -1.36840       low        none
+##   Reproductive.Effective Irritant     MW   logP  AlogP HBA HBD  TPSA    AMR nRB
+## 1                   high     none 331.97  2.936  0.960   5   0 18.46 108.76   2
+## 2                   none     none 325.97 -0.296 -1.437   7   0 38.77  90.04   0
+## 3                   none     high 462.87  0.556  0.756   8   0 88.87 114.60   3
+## 4                   high     none 283.97  1.218  0.615   5   0 34.14  87.07   1
+## 5                   none     high 323.97  0.852 -1.388   6   0 89.49  92.57   3
+## 6                   none     high 510.87  1.394  1.033   8   0 98.10 133.30   6
+##   nAtom nAcidicGroup RC nRigidB nAromRing nHB Salerts
+## 1    26            0  4      27         2   5       1
+## 2    25            0  5      29         1   7       0
+## 3    29            0  4      29         3   8       0
+## 4    22            0  3      23         2   5       0
+## 5    25            0  3      24         2   6       0
+## 6    33            0  4      30         3   8       0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(DF\_Quimeras\_des, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Name, }\AttributeTok{x =}\NormalTok{ Druglikeness, }\AttributeTok{fill =}\NormalTok{ Druglikeness))}\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 2 rows containing missing values (`position_stack()`).
+\end{verbatim}
+
+\includegraphics{Proyect_TvMP50_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(DF\_Quimeras\_des, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Name, }\AttributeTok{x =}\NormalTok{ H.Acceptors, }\AttributeTok{fill =}\NormalTok{  H.Acceptors))}\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 2 rows containing missing values (`position_stack()`).
+\end{verbatim}
+
+\includegraphics{Proyect_TvMP50_files/figure-latex/unnamed-chunk-2-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(DF\_Quimeras\_des, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Name, }\AttributeTok{x =}\NormalTok{ H.Donors, }\AttributeTok{fill =}\NormalTok{  H.Donors))}\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 2 rows containing missing values (`position_stack()`).
+\end{verbatim}
+
+\includegraphics{Proyect_TvMP50_files/figure-latex/unnamed-chunk-2-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(DF\_Quimeras\_des, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Name, }\AttributeTok{x =}\NormalTok{ cLogP, }\AttributeTok{fill =}\NormalTok{  cLogP))}\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 2 rows containing missing values (`position_stack()`).
+\end{verbatim}
+
+\includegraphics{Proyect_TvMP50_files/figure-latex/unnamed-chunk-2-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(DF\_Quimeras\_des, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Name, }\AttributeTok{x =}\NormalTok{ Tumorigenic, }\AttributeTok{fill =}\NormalTok{  Tumorigenic))}\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Proyect_TvMP50_files/figure-latex/unnamed-chunk-2-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(DF\_Quimeras\_des, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Name, }\AttributeTok{x =}\NormalTok{ TPSA, }\AttributeTok{fill =}\NormalTok{  TPSA))}\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 1 rows containing missing values (`position_stack()`).
+\end{verbatim}
+
+\includegraphics{Proyect_TvMP50_files/figure-latex/unnamed-chunk-2-6.pdf}
+
+\hypertarget{chimera-trichomonicidal-activity}{%
+\subsubsection{Chimera Trichomonicidal
+Activity}\label{chimera-trichomonicidal-activity}}
+
+The chimaera that presented the most optimal coupling with TvMP50 was
+the Emodin-Lucidin isopropyl ether chimaera that obtained a ΔG of -17.00
+We visualized our results using Chimera and Discovery Studio software.
+
+Figure 4. A schematic representation of the interaction of the ELIE
+chimera that presented optimal molecular docking with a ΔG value of -17
+is observed. A) Tube and rod image. B) Interaction of the amino acids of
+the active site of TvMP50 with the functional groups of the
+Emodin-Lucidin iso-propyl ether chimera. The aminoacids Hsp 324, Phe
+201, as well as the two Zn cofactors are observed interacting with the
+Emodin-Lucidin isopropyl ether chimera.
+
+\hypertarget{discussion}{%
+\subsubsection{Discussion}\label{discussion}}
+
+The T. vaginalis parasite is exposed to different metal cations during
+infection that can cause DNA damage. However, the presence of Zn2+
+activates the metalloproteinase TvMP50, involved in the cytotoxicity of
+the parasite. The parasite is highly resistant to the drugs used for its
+treatment, so we proposed a chemoinformatics methodology to design a
+chemical library of compounds with hypothetical trichomonicidal
+activity. For this purpose, databases were filtered, molecular
+descriptors were calculated, compounds were fragmented, similarities
+were searched and molecular docking was performed. Lipinski rules were
+used to discard compounds that did not meet the desired characteristics.
+The researchers obtained a secondary library containing compounds that
+showed optimal interaction with the T. vaginalis TvMP50 active site,
+followed by a library containing scaffolds and new molecular entities or
+chimeras. The best chimera presented a thermodynamically better value
+than metronidazole. The next step is to synthesize or acquire the
+compounds housed in this specialized chemical library against T.
+vaginalis TvMP50 for the experimental phase.
+
+\hypertarget{conclusion}{%
+\subsubsection{Conclusion}\label{conclusion}}
+
+We conclude that using chemoinformatics tools in a data-driven approach
+allowed us to assemble a database of molecules to design a novel chimera
+ELIE that may possess potential activity against TvMP50 of T. vaginalis
+and that could be synthesized to validate experimentally its properties.
+
+\end{document}

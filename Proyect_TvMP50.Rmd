@@ -1,0 +1,168 @@
+---
+title: "Desing chimeras"
+author: "Alberto Santiago"
+date: "2023-11-02"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+## Data-driven design of compounds against Trichomonas vaginalis
+
+Abstract: Trichomoniasis is a sexually transmitted disease caused by the protozoan parasite Trichomonas vaginalis, which affects 3.9% of the world's population. Metronidazole is the most common compound used to treat this infection, which causes breaks in the parasite's DNA strand, inhibiting its synthesis and viability. Nevertheless, in recent years, the parasite has shown resistance to metronidazole, so searching for new compounds against such a pathogen becomes  necessary. Therefore, in the present work, we performed a computer-assisted drug design approach searching for molecules that could act against trichomoniasis. Firstly, we developed a screening analysis based on molecular descriptors (1-4D). Then resulting molecules were processed by molecular docking analysis to identify those with better interaction with the active site of the protein TvMP50 (a virulence factor of the parasite involved in its cytotoxicity toward the host cell). Finally, fragments of the most active molecules were generated and assembled into new chimeric molecular entities, which then were reevaluated against the mentioned protein. As results, we obtained a database of compounds that could be considered in the design of novel compounds against T. vaginalis from which we obtain a new molecule derived from Emodin-Lucidin-Isopropyl-Ether (ELIE) that presented an optimal activity (ΔG=-17.0 kcal/mol)  and could be consider for further studies. 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+install.packages("tidyverse")
+install.packages("knitr")
+install.packages("DescTools")
+install.packages("dplyr")
+install.packages("ggplot2")
+install.packages("ggExtra")
+
+library(readr)
+library(ggplot2)
+library(ggExtra)
+library(tidyverse)
+library(knitr)
+library(DescTools)
+
+```
+
+
+### Molecular descriptors.
+
+Molecular descriptors are numerical values that are used to describe different characteristics of molecules, such as physicochemical, topological, and three-dimensional structural properties, and are usually analyzed in 3 dimensions. Although there are thousands of molecular descriptors, the most frequently used include molecular weight (MW), octanol/water partition coefficient (SlogP), topological polar surface area (TPSA), hydrogen bond donors (HBD), hydrogen bond acceptors (HBA), number of rotating bonds (RB), electronic or charge distribution, preferred conformations, heats of formation, solubility, LogP, pKa, refractivity, melting point, molecule length, molecular area, molecular volume, and reactive groups.
+
+In this study, we analyzed Lipinski’s rules, which suggest that there is better absorption or permeation when there are 5 hydrogen bond donors or less, 10 hydrogen bond acceptors or less, a molecular weight (MW) of 500 Daltons or less, and a Log P of 5 or less. According to Lipinski’s rule, in general, an active substance for oral administration should not violate more than one rule.
+
+In this study, we calculated the molecular descriptors of a set of molecules identified by mesh filtering in the PubMed database. There were 34 filtered compounds. The molecular descriptors were calculated using three different software/platforms: DataWarrior, Drulito, and SwissADME.
+
+```{r}
+
+Des_Mol_Total <- read.csv("/cloud/project/initial library_and_molecular_descriptors.csv", header=T)
+
+
+DF_Des_Mol_2 <- data.frame(Des_Mol_Total)
+
+
+head(DF_Des_Mol_2)
+
+
+ggplot(DF_Des_Mol_2, aes(y = Name, x = MW, fill =  MW))+
+  geom_col()
+
+ggplot(DF_Des_Mol_2, aes(y = Name, x = H.Acceptors, fill =  H.Acceptors))+
+  geom_col()
+
+ggplot(DF_Des_Mol_2, aes(y = Name, x = H.Donors, fill =  H.Donors))+
+  geom_col()
+
+ggplot(DF_Des_Mol_2, aes(y = Name, x = logP, fill = logP))+
+  geom_col()
+
+ggplot(DF_Des_Mol_2, aes(y = Name, x = TPSA, fill =  TPSA))+
+  geom_col()
+
+ggplot(DF_Des_Mol_2, aes(y = Name, x = Druglikeness, fill = Druglikeness))+
+  geom_col()
+
+```
+
+### Filtering by means of DruLiTo
+
+<img src="/cloud/project/Lipinski rules filters.png" width="700" />
+
+Graph of the compounds that comply and do not comply with Lipinski's rules. A graph showing those compounds that comply with Lipinski's rules (green star) and those that do not comply with the 5 or Lipinski's rules (red star) is shown.
+This analysis was performed with Drulito software.
+
+https://niper.gov.in/pi_dev_tools/DruLiToWeb/DruLiTo_index.html
+
+
+### Molecular docking screening
+
+Once the compounds that passed the Lipinski rules were obtained, their binding interactions toward TvMP50 were evaluated by Molecular Docking. In this step, we used the SwissDock server (http://www.swissdock.ch), a web server that predicts the binding modes between different targets and ligands following the methodology cited by Grosdidier.
+All compounds from the initial library that interacted with the active site of TvMP50 were accommodated in a library, which we call the secondary chemical library.
+
+<img src="/cloud/project/Docking screening.png" width="700" />
+
+
+###  Fragment Generation
+
+Six leading compounds were obtained by Ghose filtering and rules of threes, from which 4 different scaffolds were obtained. 
+
+- Leading compounds
+
+Figure 1. Schematic of the chemical structures of the compounds that satisfy the leader rule. a) Lycorine, b) Lucidin-isopropyl-ether, c) Emodin, d) Fumagiline, e) Quercetin and f) Wogonin.
+
+<img src="/cloud/project/Leading compounds.png" width="700" />
+
+- Scaffolds
+
+Figure 2. Schematic of the chemical structures of the scaffolds. a) Ly-corine scaffolds, b) Lucidin-isopropyl-ether scaffolds, c) Emodin scaffolds, d) Fumagiline scaffolds, e) Quercetin scaffolds and f) Wogonin scaffolds.
+
+<img src="/cloud/project/Scaffold.png" width="700" />
+
+
+Figure 3. The representation of the chimeric proposal of construction performed by DataWarrior software. Proposed construction between Emodin and Lucidin-isopropyl ether.
+
+<img src="/cloud/project/construccion de quimeras.png" width="700" />
+
+```{r}
+
+Quimeras <- read.csv("/cloud/project/Quimeras_des_mol_total.csv", header=T)
+
+head(Quimeras)
+
+DF_Quimeras_des <- data.frame(Quimeras)
+
+DF_Q <- DF_Quimeras_des %>% 
+  mutate_if(is.numeric, scale)
+
+head(DF_Quimeras_des)
+
+ggplot(DF_Quimeras_des, aes(y = Name, x = Druglikeness, fill = Druglikeness))+
+  geom_col()
+
+
+ggplot(DF_Quimeras_des, aes(y = Name, x = H.Acceptors, fill =  H.Acceptors))+
+  geom_col()
+
+
+ggplot(DF_Quimeras_des, aes(y = Name, x = H.Donors, fill =  H.Donors))+
+  geom_col()
+
+ggplot(DF_Quimeras_des, aes(y = Name, x = cLogP, fill =  cLogP))+
+  geom_col()
+
+ggplot(DF_Quimeras_des, aes(y = Name, x = Tumorigenic, fill =  Tumorigenic))+
+  geom_col()
+
+ggplot(DF_Quimeras_des, aes(y = Name, x = TPSA, fill =  TPSA))+
+  geom_col()
+
+
+```
+
+### Chimera Trichomonicidal Activity
+The chimaera that presented the most optimal coupling with TvMP50 was the Emodin-Lucidin isopropyl ether chimaera that obtained a ΔG of -17.00
+We visualized our results using Chimera and Discovery Studio software.
+
+
+Figure 4. A schematic representation of the interaction of the ELIE chimera that presented optimal molecular docking with a ΔG value of -17 is observed. A) Tube and rod image. B) Interaction of the amino acids of the active site of TvMP50 with the functional groups of the Emodin-Lucidin iso-propyl ether chimera. The aminoacids Hsp 324, Phe 201, as well as the two Zn cofactors are observed interacting with the Emodin-Lucidin isopropyl ether chimera.
+
+
+<img src="/cloud/project/ELIE chimera.png" width="500" />
+
+
+
+### Discussion
+
+The T. vaginalis parasite is exposed to different metal cations during infection that can cause DNA damage. However, the presence of Zn2+ activates the metalloproteinase TvMP50, involved in the cytotoxicity of the parasite. The parasite is highly resistant to the drugs used for its treatment, so we proposed a chemoinformatics methodology to design a chemical library of compounds with hypothetical trichomonicidal activity. For this purpose, databases were filtered, molecular descriptors were calculated, compounds were fragmented, similarities were searched and molecular docking was performed. Lipinski rules were used to discard compounds that did not meet the desired characteristics. The researchers obtained a secondary library containing compounds that showed optimal interaction with the T. vaginalis TvMP50 active site, followed by a library containing scaffolds and new molecular entities or chimeras. The best chimera presented a thermodynamically better value than metronidazole. The next step is to synthesize or acquire the compounds housed in this specialized chemical library against T. vaginalis TvMP50 for the experimental phase.
+
+### Conclusion
+We conclude that using chemoinformatics tools in a data-driven approach allowed us to assemble a database of molecules to design a novel chimera ELIE that may possess potential activity against TvMP50 of T. vaginalis and that could be synthesized to validate experimentally its properties. 
+
+
+
